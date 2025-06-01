@@ -1,206 +1,212 @@
-# 🎭 Çok Modaliteli Duygu Analizi - Derin Öğrenme Projesi
+# 🎭 Çok Modaliteli Duygu Analizi Projesi
 
-Bu proje, **Yapay Sinir Ağları (ANN) tabanlı** derin öğrenme teknikleri kullanarak görüntü ve metin verilerini birlikte analiz eden profesyonel bir duygu analizi sistemidir.
+## 📋 Proje Özeti
 
-## 📋 **Proje Şartlarına Uygunluk**
+Bu proje, **akademik gereksinimlere %100 uyumlu** çok modaliteli duygu analizi sistemidir. Görüntü ve metin verilerini birlikte kullanarak gelişmiş sentiment analizi yapar.
 
-### ✅ **VERİ SETİ ŞARTLARİ**
-- **Veri Kaynağı**: Kaggle uyumlu çok modaliteli veri seti
-- **Veri Boyutu**: 71,702+ örnek (>>1,000 şartı)
-- **Usability Score**: Kaggle standartlarına uygun
-- **Görüntü Boyutu**: 128x128 piksel (şart ≥128x128)
-- **NLP Verisi**: 1,000+ kelime, temizlenmiş İngilizce metinler
-- **Sınıf Dağılımı**: POSITIVE/NEGATIVE (dengeli dağılım)
+## ✅ Akademik Şartlara Uygunluk
 
-### 🤖 **KULLANILAN MODEL TİPLERİ**
-- **🔸 CNN** - Convolutional Neural Network (Görüntü analizi)
-- **🔸 LSTM** - Long Short-Term Memory (Metin analizi)
-- **🔸 Multimodal** - CNN + LSTM birleşimi (Çok modaliteli)
+### 📊 **Temel Şartlar:**
+- ✅ **Özellik sayısı**: 23 sayısal özellik (≥5)
+- ✅ **Sınıf sayısı**: 3 sınıf - POSITIVE, NEGATIVE, NEUTRAL (≥3)
+- ✅ **Veri seti**: 71,702+ örnek (≥1,000)
+- ✅ **Görüntü boyutu**: 128x128 piksel (≥128x128)
+- ✅ **NLP verisi**: 74,179+ kelime (≥1,000)
 
-### 📊 **DEĞERLENDİRME METRİKLERİ**
-- **Accuracy** - Genel doğruluk
-- **Precision** - Kesinlik
-- **Recall** - Duyarlılık
-- **F1-Score** - Harmonic mean
-- **ROC-AUC** - Receiver Operating Characteristic
-- **Confusion Matrix** - Karışıklık matrisi
+### 🧠 **ANN Tabanlı Modeller:**
+- ✅ **CNN**: Görüntü analizi için
+- ✅ **ANN**: Sayısal özellik analizi için
+- ✅ **Multimodal**: CNN + Feature birleşimi
+- ✅ **Geleneksel ML**: Random Forest, SVM, Gradient Boosting, MLP
 
-### 📈 **GÖRSEL ÇIKTILAR**
-- **Training/Validation Curves** - Eğitim eğrileri (Loss, Accuracy, Precision, Recall)
-- **Confusion Matrix** - Her model için karışıklık matrisi
-- **ROC Curves** - AUC skorları ile ROC eğrileri
-- **Model Comparison** - Model karşılaştırma grafikleri
+### 📈 **Değerlendirme Metrikleri:**
+- ✅ **Accuracy, F1-Score, Precision, Recall**
+- ✅ **Confusion Matrix**
+- ✅ **Model karşılaştırma grafikleri**
+- ✅ **Özellik önem analizi**
 
-## 🚀 **Nasıl Çalıştırılır**
+## 🚀 Proje Versiyonları
 
-### 1. **Gerekli Kütüphaneleri Kurun**
+### 1. **Temel Versiyon** (`sentiment_analysis_project.py`)
+- Geleneksel ML modelleri
+- Logistic Regression, Random Forest
+- TF-IDF özellik çıkarımı
+
+### 2. **Derin Öğrenme Versiyonu** (`deep_learning_main.py`)
+- CNN, LSTM, Multimodal modeller
+- 2 sınıflı sistem (POSITIVE/NEGATIVE)
+- Sentetik görüntü verisi
+
+### 3. **Gelişmiş Versiyon** ⭐ (`enhanced_deep_learning.py`)
+- **23 sayısal özellik** çıkarımı
+- **3 sınıflı** sistem (POSITIVE/NEGATIVE/NEUTRAL)
+- **7 farklı model** karşılaştırması
+- **Kapsamlı görselleştirmeler**
+
+### 4. **Web Uygulaması** (`sentiment_web_app.py`)
+- Streamlit tabanlı interaktif arayüz
+- Gerçek zamanlı tahmin
+- Görselleştirmeler
+
+## 📊 Özellik Çıkarımı (23 Özellik)
+
+### 📝 **Metin Özellikleri (13):**
+1. Kelime sayısı
+2. Karakter sayısı  
+3. Cümle sayısı
+4. Ortalama kelime uzunluğu
+5. Sentiment polaritesi
+6. Sentiment öznelliği
+7. Okunabilirlik skoru
+8. Eğitim seviyesi
+9. Ünlem sayısı
+10. Soru sayısı
+11. Büyük harf oranı
+12. Pozitif kelime sayısı
+13. Negatif kelime sayısı
+
+### 🖼️ **Görüntü Özellikleri (10):**
+1. Parlaklık
+2. Kontrast
+3. Kırmızı kanal ortalaması
+4. Yeşil kanal ortalaması
+5. Mavi kanal ortalaması
+6. Renk varyansı
+7. Histogram ortalaması
+8. Histogram standart sapması
+9. Kenar yoğunluğu
+10. Doku karmaşıklığı
+
+## 🏆 Model Performansları
+
+| Model | Accuracy | F1-Score | Açıklama |
+|-------|----------|----------|----------|
+| **SVM** | 61.0% | 0.543 | 🥇 En iyi geleneksel model |
+| **Feature ANN** | 59.5% | 0.543 | 🥈 Sayısal özellik tabanlı |
+| **Multimodal** | 59.0% | 0.531 | 🥉 CNN + Feature birleşimi |
+| Random Forest | 58.5% | 0.519 | Ensemble yöntemi |
+| Gradient Boosting | 52.0% | 0.489 | Boosting algoritması |
+| MLP Neural Network | 51.5% | 0.514 | Çok katmanlı ANN |
+| CNN | 43.0% | 0.348 | Görüntü tabanlı |
+
+## 📁 Dosya Yapısı
+
+```
+sentiment-analysis-project/
+├── 📄 enhanced_deep_learning.py      # Ana gelişmiş script (ÖNERİLEN)
+├── 📄 feature_engineering.py         # Özellik çıkarım modülü
+├── 📄 deep_learning_main.py          # Derin öğrenme versiyonu
+├── 📄 deep_learning_models.py        # DL model sınıfları
+├── 📄 sentiment_analysis_project.py  # Temel ML versiyonu
+├── 📄 sentiment_web_app.py           # Streamlit web uygulaması
+├── 📄 requirements.txt               # Gerekli kütüphaneler
+├── 📄 README.md                      # Dokümantasyon
+├── 📊 enhanced_model_comparison.png  # Model karşılaştırma grafiği
+├── 📊 enhanced_analysis_details.png  # Detaylı analiz grafikleri
+└── 📊 *.png                         # Diğer görselleştirmeler
+```
+
+## 🛠️ Kurulum ve Çalıştırma
+
+### 1. **Gerekli Kütüphaneleri Kurun:**
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. **Geleneksel ML Modelleri (Hızlı Test)**
+### 2. **Veri Setini İndirin:**
+- Kaggle'dan multimodal sentiment analysis veri setini indirin
+- `/Users/ardanar/Downloads/dataset.csv` konumuna yerleştirin
+
+### 3. **Gelişmiş Versiyonu Çalıştırın:**
 ```bash
-python sentiment_analysis_project.py
+python enhanced_deep_learning.py
 ```
 
-### 3. **Derin Öğrenme Modelleri (Ana Proje)**
-```bash
-python deep_learning_main.py
-```
-
-### 4. **Web Uygulaması**
+### 4. **Web Uygulamasını Başlatın:**
 ```bash
 streamlit run sentiment_web_app.py
 ```
 
-## 🏗️ **Proje Yapısı**
+## 📊 Oluşturulan Görselleştirmeler
 
-```
-sentiment-analysis-project/
-├── sentiment_analysis_project.py    # Geleneksel ML (Logistic Regression, Random Forest)
-├── deep_learning_models.py          # Derin öğrenme sınıfları
-├── deep_learning_main.py            # Ana derin öğrenme scripti
-├── sentiment_web_app.py             # Streamlit web uygulaması
-├── requirements.txt                 # Tüm bağımlılıklar (TensorFlow dahil)
-├── README.md                        # Proje dokümantasyonu
-└── .gitignore                       # Git yapılandırması
-```
+### 🔍 **Model Karşılaştırma:**
+- Accuracy ve F1-Score bar grafikleri
+- Confusion matrix (en iyi model için)
+- Radar chart (performans analizi)
 
-## 🔬 **Model Mimarileri**
+### 📈 **Analiz Detayları:**
+- Sınıf dağılımı (pie chart)
+- Özellik önem analizi (Random Forest)
+- Tahmin vs gerçek dağılım karşılaştırması
 
-### 🖼️ **CNN Modeli (Görüntü)**
-```python
-Sequential([
-    Conv2D(32, (3,3), activation='relu'),
-    BatchNormalization(),
-    MaxPooling2D(2,2),
-    Conv2D(64, (3,3), activation='relu'),
-    BatchNormalization(),
-    MaxPooling2D(2,2),
-    Conv2D(128, (3,3), activation='relu'),
-    GlobalAveragePooling2D(),
-    Dense(512, activation='relu'),
-    Dense(1, activation='sigmoid')
-])
-```
+## 🎯 Kullanım Senaryoları
 
-### 📝 **LSTM Modeli (Metin)**
-```python
-Sequential([
-    Embedding(vocab_size, 128),
-    LSTM(256, dropout=0.3, return_sequences=True),
-    LSTM(128, dropout=0.3),
-    Dense(256, activation='relu'),
-    Dense(1, activation='sigmoid')
-])
-```
+### 🎓 **Akademik Projeler:**
+- ✅ Tüm şartları karşılar
+- ✅ 7 farklı model karşılaştırması
+- ✅ Kapsamlı görselleştirmeler
+- ✅ Detaylı rapor ve metrikler
 
-### 🎭 **Multimodal Model**
-- CNN branch (görüntü işleme)
-- LSTM branch (metin işleme)
-- Concatenation layer (birleştirme)
-- Dense layers (sınıflandırma)
+### 💼 **Endüstriyel Uygulamalar:**
+- Sosyal medya sentiment analizi
+- Ürün inceleme otomasyonu
+- Müşteri geri bildirim analizi
+- İçerik moderasyonu
 
-## 📊 **Beklenen Performans**
+### 📚 **Eğitim Amaçlı:**
+- Machine Learning kavramları
+- Deep Learning teknikleri
+- Feature Engineering yöntemleri
+- Model karşılaştırma metodları
 
-| Model | Accuracy | Precision | Recall | F1-Score | AUC |
-|-------|----------|-----------|--------|----------|-----|
-| CNN | ~75-85% | ~0.80 | ~0.75 | ~0.77 | ~0.85 |
-| LSTM | ~80-90% | ~0.85 | ~0.82 | ~0.83 | ~0.90 |
-| Multimodal | **~85-95%** | **~0.90** | **~0.87** | **~0.88** | **~0.92** |
+## 🔧 Teknik Detaylar
 
-## 🔧 **Teknik Özellikler**
+### 📦 **Kullanılan Teknolojiler:**
+- **Python 3.12**: Ana programlama dili
+- **TensorFlow/Keras**: Derin öğrenme modelleri
+- **Scikit-learn**: Geleneksel ML algoritmaları
+- **Pandas/NumPy**: Veri işleme
+- **Matplotlib/Seaborn**: Görselleştirme
+- **Streamlit**: Web uygulaması
+- **TextBlob**: Doğal dil işleme
+- **OpenCV**: Görüntü işleme
 
-### **Derin Öğrenme Optimizasyonları**
-- **Batch Normalization** - Eğitim kararlılığı
-- **Dropout** - Overfitting önleme
-- **Early Stopping** - Otomatik durma
-- **Learning Rate Scheduling** - Adaptive öğrenme oranı
-- **Data Augmentation** - Veri çeşitlendirme
+### 🏗️ **Mimari Tasarım:**
+- **Modüler yapı**: Her bileşen ayrı dosyada
+- **Ölçeklenebilir**: Yeni modeller kolayca eklenebilir
+- **Hata yönetimi**: Robust exception handling
+- **Dokümantasyon**: Kapsamlı code comments
 
-### **Veri İşleme**
-- **Image Preprocessing** - Normalizasyon ve resize
-- **Text Tokenization** - Kelime vektörleştirme
-- **Sequence Padding** - Eşit uzunluk garantisi
-- **Label Encoding** - Kategorik kodlama
+## 📈 Gelecek Geliştirmeler
 
-## 🎯 **Kullanım Alanları**
+- [ ] GPU optimizasyonu
+- [ ] Gerçek görüntü verisi entegrasyonu
+- [ ] API endpoint geliştirme
+- [ ] Docker containerization
+- [ ] Model deployment (MLOps)
+- [ ] A/B testing framework
 
-- **Sosyal Medya Analizi** - Post/comment duygu analizi
-- **E-ticaret** - Ürün yorumu analizi
-- **Pazarlama** - Marka duygu takibi
-- **Müşteri Hizmetleri** - Otomatik kategorizasyon
-- **Araştırma** - Akademik çalışmalar
+## 👨‍💻 Geliştirici
 
-## 📚 **Öğrenme Hedefleri**
+**Ardanar** 
+- GitHub: [ardanar](https://github.com/ardanar/sentiment-analysis-project)
+- Proje Türü: Akademik Çok Modaliteli Sentiment Analizi
 
-### **Başlangıç Seviyesi**
-- Derin öğrenme temelleri
-- CNN ve LSTM mimarileri
-- Çok modaliteli veri işleme
+## 📄 Lisans
 
-### **Orta Seviye**
-- Model optimizasyonu
-- Hyperparameter tuning
-- Transfer learning
-
-### **İleri Seviye**
-- Custom loss functions
-- Attention mechanisms
-- BERT/Transformer models
-
-## 🛠️ **Gereksinimler**
-
-- **Python**: 3.8+
-- **TensorFlow**: 2.10+
-- **GPU**: Önerilen (CUDA uyumlu)
-- **RAM**: 8GB+ (model boyutuna göre)
-- **Disk**: 2GB+ (veri seti ve modeller için)
-
-## 📈 **Oluşturulan Dosyalar**
-
-Proje çalıştırıldığında şu dosyalar oluşturulur:
-
-### **Geleneksel ML Çıktıları**
-- `sentiment_distribution.png`
-- `sentiment_analysis.png`
-
-### **Derin Öğrenme Çıktıları**
-- `CNN_training_curves.png`
-- `CNN_confusion_matrix.png`
-- `CNN_roc_curve.png`
-- `LSTM_training_curves.png`
-- `LSTM_confusion_matrix.png`
-- `LSTM_roc_curve.png`
-- `Multimodal_training_curves.png`
-- `Multimodal_confusion_matrix.png`
-- `Multimodal_roc_curve.png`
-- `model_comparison.png`
-
-## ⚠️ **Önemli Notlar**
-
-- **Dataset**: Büyük dosya (.csv) GitHub'a yüklenmez (.gitignore)
-- **Models**: Eğitilmiş modeller local'de saklanır
-- **GPU**: CUDA yoksa CPU'da çalışır (daha yavaş)
-- **Memory**: Büyük modeller için RAM kullanımına dikkat
-
-## 🤝 **Katkıda Bulunma**
-
-1. Repository'yi fork edin
-2. Feature branch oluşturun (`git checkout -b feature/YeniOzellik`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik eklendi'`)
-4. Branch'inizi push edin (`git push origin feature/YeniOzellik`)
-5. Pull Request oluşturun
-
-## 📝 **Lisans**
-
-Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
-
-## 📞 **İletişim**
-
-- **GitHub**: [ardanar](https://github.com/ardanar)
-- **Proje Linki**: [sentiment-analysis-project](https://github.com/ardanar/sentiment-analysis-project)
+Bu proje akademik amaçlar için geliştirilmiştir ve MIT lisansı altında dağıtılmaktadır.
 
 ---
 
-**⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!** 
+## 🎉 Sonuç
+
+Bu proje, **akademik gereksinimleri tam karşılayan** profesyonel bir çok modaliteli duygu analizi sistemidir. 
+
+### ✅ **Başarılan Hedefler:**
+- 📊 **23 sayısal özellik** (≥5)
+- 🎯 **3 sınıflı sistem** (≥3)  
+- 🧠 **7 farklı ANN/ML modeli**
+- 📈 **Kapsamlı değerlendirme metrikleri**
+- 🎨 **Profesyonel görselleştirmeler**
+
+**🚀 Çalıştırmak için: `python enhanced_deep_learning.py`** 

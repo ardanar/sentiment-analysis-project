@@ -115,10 +115,14 @@ def train_and_evaluate_models(analyzer, images, texts, labels):
     print(f"\n🚀 MODEL EĞİTİMİ VE DEĞERLENDİRME")
     print("=" * 50)
     
-    # Train-test split
-    # Multimodal için
-    X_img_train, X_img_test, X_text_train, X_text_test, y_train, y_test = train_test_split(
-        images, texts, labels, test_size=0.2, random_state=42, stratify=labels
+    # Train-test split için verileri ayrı ayrı bölelim
+    # Görüntü ve metin verileri için ayrı split
+    X_img_train, X_img_test, y_train, y_test = train_test_split(
+        images, labels, test_size=0.2, random_state=42, stratify=labels
+    )
+    
+    X_text_train, X_text_test, _, _ = train_test_split(
+        texts, labels, test_size=0.2, random_state=42, stratify=labels
     )
     
     results = {}
@@ -284,7 +288,7 @@ def main():
         df = load_dataset(dataset_path, sample_size=2000)
         
         # 2. Derin öğrenme için hazırla
-        analyzer, images, texts, labels = prepare_data_for_deep_learning(df, sample_size=1000)
+        analyzer, images, texts, labels, le = prepare_data_for_deep_learning(df, sample_size=1000)
         
         # 3. Modelleri eğit ve değerlendir
         results = train_and_evaluate_models(analyzer, images, texts, labels)
