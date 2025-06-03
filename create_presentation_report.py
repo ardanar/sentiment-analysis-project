@@ -137,7 +137,7 @@ class AcademicReportGenerator:
         
         # Grup üyesi bilgileri
         team_data = [
-            ["👨‍💻 Geliştirici", "📧 E-posta", "🔗 GitHub", "🎯 Rol"],
+            ["Geliştirici", "E-posta", "GitHub", "Rol"],
             ["Ardanar", "ardanar@example.com", "github.com/ardanar", "Proje Lideri & Full-Stack Developer"],
             ["", "", "", "• Veri işleme ve analiz"],
             ["", "", "", "• Derin öğrenme model geliştirme"],
@@ -199,16 +199,16 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.2*inch))
         
         # Veri seti özellikleri
-        story.append(Paragraph("🔍 VERİ SETİ ÖZELLİKLERİ", self.subsection_style))
+        story.append(Paragraph("VERİ SETİ ÖZELLİKLERİ", self.subsection_style))
         
         dataset_features = [
-            ["📋 Özellik", "📊 Değer", "✅ Akademik Şart", "🎯 Durum"],
-            ["Toplam Örnek", "71,702", "≥ 1,000", "✅ %7,000+ fazla"],
-            ["Görüntü Boyutu", "128 x 128 piksel", "≥ 128x128", "✅ Tam uyumlu"],
-            ["Metin Uzunluğu", "74,179+ kelime", "≥ 1,000 kelime", "✅ %7,000+ fazla"],
-            ["Orijinal Sınıf", "2 (POS/NEG)", "≥ 2 sınıf", "✅ Uyumlu"],
-            ["Gelişmiş Sınıf", "3 (POS/NEG/NEU)", "≥ 3 sınıf", "✅ Şartlar karşılandı"],
-            ["Sayısal Özellik", "23 özellik", "≥ 5 özellik", "✅ %460 fazla"]
+            ["Özellik", "Değer", "Akademik Şart", "Durum"],
+            ["Toplam Örnek", "71,702", "≥ 1,000", "%7,000+ fazla"],
+            ["Görüntü Boyutu", "128 x 128 piksel", "≥ 128x128", "Tam uyumlu"],
+            ["Metin Uzunluğu", "74,179+ kelime", "≥ 1,000 kelime", "%7,000+ fazla"],
+            ["Orijinal Sınıf", "2 (POS/NEG)", "≥ 2 sınıf", "Uyumlu"],
+            ["Gelişmiş Sınıf", "3 (POS/NEG/NEU)", "≥ 3 sınıf", "Şartlar karşılandı"],
+            ["Sayısal Özellik", "23 özellik", "≥ 5 özellik", "%460 fazla"]
         ]
         
         features_table = Table(dataset_features, colWidths=[1.8*inch, 1.5*inch, 1.5*inch, 1.7*inch])
@@ -230,7 +230,7 @@ class AcademicReportGenerator:
         story.append(Paragraph("🔧 ÇIKARILAN 23 SAYISAL ÖZELLİK", self.subsection_style))
         
         text_features = [
-            "📝 <b>Metin Özellikleri (13):</b>",
+            "<b>Metin Özellikleri (13):</b>",
             "• Kelime sayısı, Karakter sayısı, Cümle sayısı",
             "• Ortalama kelime uzunluğu, Sentiment polaritesi",
             "• Okunabilirlik skoru, Eğitim seviyesi",
@@ -244,7 +244,7 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.1*inch))
         
         image_features = [
-            "🖼️ <b>Görüntü Özellikleri (10):</b>",
+            "<b>Görüntü Özellikleri (10):</b>",
             "• Parlaklık, Kontrast, RGB kanal ortalamaları",
             "• Renk varyansı, Histogram istatistikleri",
             "• Kenar yoğunluğu, Doku karmaşıklığı"
@@ -266,7 +266,7 @@ class AcademicReportGenerator:
         story.append(Paragraph("🛠️ KULLANILAN TEKNOLOJİLER", self.subsection_style))
         
         tech_data = [
-            ["🔧 Kategori", "📦 Teknoloji", "🎯 Kullanım Amacı"],
+            ["Kategori", "Teknoloji", "Kullanım Amacı"],
             ["Programlama", "Python 3.12", "Ana geliştirme dili"],
             ["Derin Öğrenme", "TensorFlow 2.19", "CNN, ANN, Multimodal modeller"],
             ["Makine Öğrenme", "Scikit-learn", "Geleneksel ML algoritmaları"],
@@ -334,10 +334,10 @@ class AcademicReportGenerator:
         story.append(Paragraph("📊 MODEL PERFORMANS SONUÇLARI", self.subsection_style))
         
         results_data = [
-            ["🏆 Sıra", "🤖 Model", "📈 Accuracy", "📊 F1-Score", "💡 Açıklama"],
-            ["🥇 1", "SVM", "61.0%", "0.543", "En iyi geleneksel model"],
-            ["🥈 2", "Feature ANN", "59.5%", "0.543", "Sayısal özellik tabanlı"],
-            ["🥉 3", "Multimodal", "59.0%", "0.531", "CNN + Feature birleşimi"],
+            ["Sıra", "Model", "Accuracy", "F1-Score", "Açıklama"],
+            ["1", "SVM", "61.0%", "0.543", "En iyi geleneksel model"],
+            ["2", "Feature ANN", "59.5%", "0.543", "Sayısal özellik tabanlı"],
+            ["3", "Multimodal", "59.0%", "0.531", "CNN + Feature birleşimi"],
             ["4", "Random Forest", "58.5%", "0.519", "Ensemble yöntemi"],
             ["5", "Gradient Boosting", "52.0%", "0.489", "Boosting algoritması"],
             ["6", "MLP Neural Network", "51.5%", "0.514", "Çok katmanlı ANN"],
@@ -366,10 +366,10 @@ class AcademicReportGenerator:
         story.append(Paragraph("🎯 SINIF DAĞILIMI (3 Sınıflı Sistem)", self.subsection_style))
         
         class_data = [
-            ["😊 POSITIVE", "435 örnek", "%43.5"],
-            ["😐 NEUTRAL", "288 örnek", "%28.8"],
-            ["😔 NEGATIVE", "277 örnek", "%27.7"],
-            ["📊 TOPLAM", "1,000 örnek", "%100.0"]
+            ["POSITIVE", "435 örnek", "%43.5"],
+            ["NEUTRAL", "288 örnek", "%28.8"],
+            ["NEGATIVE", "277 örnek", "%27.7"],
+            ["TOPLAM", "1,000 örnek", "%100.0"]
         ]
         
         class_table = Table(class_data, colWidths=[2*inch, 2*inch, 1.5*inch])
@@ -389,7 +389,7 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.3*inch))
         
         # Ana bulgular
-        story.append(Paragraph("🔍 ANA BULGULAR", self.subsection_style))
+        story.append(Paragraph("ANA BULGULAR", self.subsection_style))
         
         findings = [
             "• <b>En başarılı model:</b> SVM (%61.0 accuracy) - Sayısal özelliklerle çalışır",
@@ -407,7 +407,7 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.3*inch))
         
         # Görselleştirmeler bilgisi
-        story.append(Paragraph("📈 OLUŞTURULAN GÖRSELLEŞTİRMELER", self.subsection_style))
+        story.append(Paragraph("OLUŞTURULAN GÖRSELLEŞTİRMELER", self.subsection_style))
         
         viz_info = """
         <b>Proje kapsamında 12 farklı profesyonel görselleştirme oluşturulmuştur:</b><br/>
@@ -436,7 +436,7 @@ class AcademicReportGenerator:
         story.append(Paragraph("🎯 PROJE BAŞARI ÖZETİ", self.subsection_style))
         
         success_data = [
-            ["✅ Akademik Şart", "🎯 Minimum", "📊 Elde Edilen", "📈 Başarı Oranı"],
+            ["Akademik Şart", "Minimum", "Elde Edilen", "Başarı Oranı"],
             ["Özellik Sayısı", "≥ 5", "23 özellik", "%460 fazla"],
             ["Sınıf Sayısı", "≥ 3", "3 sınıf", "%100 uyumlu"],
             ["Veri Örneği", "≥ 1,000", "71,702+", "%7,000+ fazla"],
@@ -461,7 +461,7 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.3*inch))
         
         # Gelecek çalışmalar
-        story.append(Paragraph("🚀 GELECEKTEKİ GELİŞTİRMELER", self.subsection_style))
+        story.append(Paragraph("GELECEKTEKİ GELİŞTİRMELER", self.subsection_style))
         
         future_work = [
             "• <b>GPU Optimizasyonu:</b> CUDA desteği ile hızlandırma",
@@ -479,7 +479,7 @@ class AcademicReportGenerator:
         story.append(Spacer(1, 0.3*inch))
         
         # Sonuç metni
-        story.append(Paragraph("📝 GENEL DEĞERLENDİRME", self.subsection_style))
+        story.append(Paragraph("GENEL DEĞERLENDİRME", self.subsection_style))
         
         conclusion_text = """
         Bu proje, çok modaliteli duygu analizi alanında kapsamlı bir çalışma gerçekleştirmiştir. 
@@ -515,11 +515,11 @@ class AcademicReportGenerator:
         
         # PDF oluştur
         doc.build(story)
-        print(f"✅ Rapor başarıyla oluşturuldu: {filename}")
+        print(f"Rapor başarıyla oluşturuldu: {filename}")
 
 def main():
     """Ana fonksiyon"""
-    print("📄 AKADEMİK SUNUM RAPORU OLUŞTURULUYOR...")
+    print("AKADEMİK SUNUM RAPORU OLUŞTURULUYOR...")
     print("=" * 50)
     
     # Rapor oluşturucu
@@ -528,16 +528,16 @@ def main():
     # PDF raporu oluştur
     generator.create_full_report()
     
-    print("\n🎉 PDF RAPOR BAŞARIYLA OLUŞTURULDU!")
-    print("📁 Dosya: Multimodal_Sentiment_Analysis_Report.pdf")
-    print("📊 İçerik:")
+    print("\nPDF RAPOR BAŞARIYLA OLUŞTURULDU!")
+    print("Dosya: Multimodal_Sentiment_Analysis_Report.pdf")
+    print("İçerik:")
     print("   1. Kapak Sayfası")
     print("   2. Grup Üyeleri Bilgileri")
     print("   3. Veri Seti Açıklaması")
     print("   4. Model Mimarisi ve Teknolojiler")
     print("   5. Eğitim Sonuçları ve Metrikler")
     print("   6. Sonuç ve Değerlendirme")
-    print("\n📄 Rapor akademik sunum için hazır!")
+    print("\nRapor akademik sunum için hazır!")
 
 if __name__ == "__main__":
     main() 

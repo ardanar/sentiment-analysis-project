@@ -15,15 +15,15 @@ warnings.filterwarnings('ignore')
 
 def test_data_loading():
     """Veri yükleme ve format kontrolü"""
-    print("🔍 VERİ YÜKLEME TESTİ")
+    print("VERİ YÜKLEME TESTİ")
     print("=" * 40)
     
     # Veri yükle
     df = pd.read_csv('/Users/ardanar/Downloads/dataset.csv', nrows=100)
-    print(f"✅ {len(df)} satır yüklendi")
+    print(f"{len(df)} satır yüklendi")
     
     # İlk görüntüyü test et
-    print("\n🖼️ GÖRÜNTÜ VERİSİ TESTİ:")
+    print("\nGÖRÜNTÜ VERİSİ TESTİ:")
     for i in range(min(5, len(df))):
         try:
             img_str = df['Image'].iloc[i]
@@ -38,43 +38,43 @@ def test_data_loading():
             
             # İlk başarılı görüntüde dur
             if len(img_array.shape) >= 2:
-                print(f"✅ Başarılı görüntü bulundu: {img_array.shape}")
+                print(f"Başarılı görüntü bulundu: {img_array.shape}")
                 return df, img_array
                 
         except Exception as e:
             print(f"Görüntü {i+1} hatası: {e}")
             continue
     
-    print("❌ Hiç geçerli görüntü bulunamadı")
+    print("Hiç geçerli görüntü bulunamadı")
     return df, None
 
 def test_simple_models():
     """Basit modelleri test et"""
-    print("\n🤖 MODEL TESTİ")
+    print("\nMODEL TESTİ")
     print("=" * 40)
     
     df, sample_image = test_data_loading()
     
     if sample_image is None:
-        print("❌ Görüntü verisi olmadan model test edilemez")
+        print("Görüntü verisi olmadan model test edilemez")
         return
     
     # Labels hazırla
     le = LabelEncoder()
     y = le.fit_transform(df['Sentiment'])
-    print(f"✅ Labels: {le.classes_}")
-    print(f"✅ Dağılım: {np.bincount(y)}")
+    print(f"Labels: {le.classes_}")
+    print(f"Dağılım: {np.bincount(y)}")
     
     # Metinleri hazırla
     texts = df['Text'].values
-    print(f"✅ {len(texts)} metin hazırlandı")
-    print(f"✅ Ortalama uzunluk: {np.mean([len(t) for t in texts]):.1f}")
+    print(f"{len(texts)} metin hazırlandı")
+    print(f"Ortalama uzunluk: {np.mean([len(t) for t in texts]):.1f}")
     
     # Basit özellik çıkarma
     from sklearn.feature_extraction.text import TfidfVectorizer
     vectorizer = TfidfVectorizer(max_features=1000, stop_words='english')
     X_text = vectorizer.fit_transform(texts)
-    print(f"✅ TF-IDF: {X_text.shape}")
+    print(f"TF-IDF: {X_text.shape}")
     
     # Basit model test
     from sklearn.ensemble import RandomForestClassifier
@@ -86,13 +86,13 @@ def test_simple_models():
     model.fit(X_train, y_train)
     
     accuracy = model.score(X_test, y_test)
-    print(f"✅ Random Forest Accuracy: {accuracy:.4f}")
+    print(f"Random Forest Accuracy: {accuracy:.4f}")
     
     return True
 
 def create_synthetic_data():
     """Derin öğrenme için sentetik veri oluştur"""
-    print("\n🎯 SENTETİK VERİ OLUŞTURMA")
+    print("\nSENTETİK VERİ OLUŞTURMA")
     print("=" * 40)
     
     # Gerçek metinleri al
@@ -106,9 +106,9 @@ def create_synthetic_data():
     texts = df['Text'].values
     labels = df['Sentiment'].values
     
-    print(f"✅ {n_samples} örnek oluşturuldu")
-    print(f"✅ Görüntü boyutu: {synthetic_images.shape}")
-    print(f"✅ Metin sayısı: {len(texts)}")
+    print(f"{n_samples} örnek oluşturuldu")
+    print(f"Görüntü boyutu: {synthetic_images.shape}")
+    print(f"Metin sayısı: {len(texts)}")
     
     # Label encoding
     le = LabelEncoder()
@@ -124,13 +124,13 @@ def create_synthetic_data():
     sequences = tokenizer.texts_to_sequences(texts)
     padded_sequences = pad_sequences(sequences, maxlen=50, padding='post')
     
-    print(f"✅ Tokenized sequences: {padded_sequences.shape}")
+    print(f"Tokenized sequences: {padded_sequences.shape}")
     
     return synthetic_images, padded_sequences, y, le
 
 def test_simple_cnn():
     """Basit CNN test et"""
-    print("\n🔥 BASIT CNN TESTİ")
+    print("\nBASIT CNN TESTİ")
     print("=" * 40)
     
     try:
@@ -159,18 +159,18 @@ def test_simple_cnn():
             metrics=['accuracy']
         )
         
-        print("✅ CNN modeli oluşturuldu")
-        print(f"📊 Model parametreleri: {model.count_params():,}")
+        print("CNN modeli oluşturuldu")
+        print(f"Model parametreleri: {model.count_params():,}")
         
         # Train-test split
         X_train, X_test, y_train, y_test = train_test_split(
             images, labels, test_size=0.2, random_state=42
         )
         
-        print(f"✅ Train: {X_train.shape}, Test: {X_test.shape}")
+        print(f"Train: {X_train.shape}, Test: {X_test.shape}")
         
         # Kısa eğitim
-        print("🚀 Model eğitiliyor (2 epoch)...")
+        print("Model eğitiliyor (2 epoch)...")
         history = model.fit(
             X_train, y_train,
             validation_data=(X_test, y_test),
@@ -183,18 +183,18 @@ def test_simple_cnn():
         final_acc = history.history['accuracy'][-1]
         final_val_acc = history.history['val_accuracy'][-1]
         
-        print(f"✅ Final Training Accuracy: {final_acc:.4f}")
-        print(f"✅ Final Validation Accuracy: {final_val_acc:.4f}")
+        print(f"Final Training Accuracy: {final_acc:.4f}")
+        print(f"Final Validation Accuracy: {final_val_acc:.4f}")
         
         return True
         
     except Exception as e:
-        print(f"❌ CNN testi başarısız: {e}")
+        print(f"CNN testi başarısız: {e}")
         return False
 
 def main():
     """Ana test fonksiyonu"""
-    print("🧪 DERİN ÖĞRENME VERİ VE MODEL TESTLERİ")
+    print("DERİN ÖĞRENME VERİ VE MODEL TESTLERİ")
     print("=" * 50)
     
     # Test 1: Veri yükleme
@@ -205,15 +205,15 @@ def main():
         success2 = test_simple_cnn()
         
         if success2:
-            print("\n🎉 TÜM TESTLER BAŞARILI!")
-            print("✅ Veri formatı doğru")
-            print("✅ TensorFlow çalışıyor")
-            print("✅ CNN modeli eğitilebilir")
-            print("\n💡 Ana projeyi çalıştırmaya hazır!")
+            print("\nTÜM TESTLER BAŞARILI!")
+            print("Veri formatı doğru")
+            print("TensorFlow çalışıyor")
+            print("CNN modeli eğitilebilir")
+            print("\nAna projeyi çalıştırmaya hazır!")
         else:
-            print("\n⚠️ CNN testi başarısız - TensorFlow kurulumunu kontrol edin")
+            print("\nCNN testi başarısız - TensorFlow kurulumunu kontrol edin")
     else:
-        print("\n❌ Veri testleri başarısız")
+        print("\nVeri testleri başarısız")
 
 if __name__ == "__main__":
     main() 

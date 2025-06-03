@@ -39,29 +39,29 @@ def load_dataset(file_path, sample_size=2000):
     - Sınıflandırma için dengeli dağılım ✅
     - NLP: En az 1,000 kelime ✅
     """
-    print("📊 VERİ SETİ YÜKLEME VE KONTROL")
+    print(" VERİ SETİ YÜKLEME VE KONTROL")
     print("=" * 50)
     
     # Veri setini yükle
-    print(f"📂 Veri seti yükleniyor (örnek: {sample_size})...")
+    print(f" Veri seti yükleniyor (örnek: {sample_size})...")
     df = pd.read_csv(file_path, nrows=sample_size)
     
-    print(f"✅ Yüklenen veri sayısı: {len(df):,}")
-    print(f"📊 Sütunlar: {list(df.columns)}")
+    print(f" Yüklenen veri sayısı: {len(df):,}")
+    print(f" Sütunlar: {list(df.columns)}")
     
     # Şartlara uygunluk kontrolü
-    print("\n🔍 ŞARTLARA UYGUNLUK KONTROLÜ:")
+    print("\n ŞARTLARA UYGUNLUK KONTROLÜ:")
     print("-" * 30)
     
     # 1. Veri örneği sayısı
     if len(df) >= 1000:
-        print(f"✅ Veri örneği: {len(df):,} (≥1,000)")
+        print(f" Veri örneği: {len(df):,} (≥1,000)")
     else:
-        print(f"❌ Veri örneği: {len(df):,} (<1,000)")
+        print(f" Veri örneği: {len(df):,} (<1,000)")
     
     # 2. Sınıf dağılımı
     class_dist = df['Sentiment'].value_counts()
-    print(f"✅ Sınıf dağılımı:")
+    print(f" Sınıf dağılımı:")
     for class_name, count in class_dist.items():
         percentage = (count / len(df)) * 100
         print(f"   {class_name}: {count:,} (%{percentage:.1f})")
@@ -71,15 +71,15 @@ def load_dataset(file_path, sample_size=2000):
     df['word_count'] = df['Text'].str.split().str.len()
     
     total_words = df['word_count'].sum()
-    print(f"✅ Toplam kelime sayısı: {total_words:,} (≥1,000)")
-    print(f"📝 Ortalama metin uzunluğu: {df['text_length'].mean():.1f} karakter")
-    print(f"📝 Ortalama kelime sayısı: {df['word_count'].mean():.1f} kelime")
+    print(f" Toplam kelime sayısı: {total_words:,} (≥1,000)")
+    print(f" Ortalama metin uzunluğu: {df['text_length'].mean():.1f} karakter")
+    print(f" Ortalama kelime sayısı: {df['word_count'].mean():.1f} kelime")
     
     return df
 
 def prepare_data_for_deep_learning(df, sample_size=1000):
     """Verileri derin öğrenme için hazırla"""
-    print(f"\n🏗️ VERİLER DERİN ÖĞRENME İÇİN HAZIRLANIYOR")
+    print(f"\n VERİLER DERİN ÖĞRENME İÇİN HAZIRLANIYOR")
     print("=" * 50)
     
     # Multimodal analyzer oluştur
@@ -92,7 +92,7 @@ def prepare_data_for_deep_learning(df, sample_size=1000):
     # Labels'i encode et
     le = LabelEncoder()
     y = le.fit_transform(df['Sentiment'])
-    print(f"✅ Label encoding: {le.classes_}")
+    print(f" Label encoding: {le.classes_}")
     
     # Görüntüleri işle
     images, img_indices = analyzer.preprocess_images(df['Image'], sample_size)
@@ -104,15 +104,15 @@ def prepare_data_for_deep_learning(df, sample_size=1000):
     # Metinleri işle
     processed_texts = analyzer.preprocess_texts(texts)
     
-    print(f"✅ İşlenen veri sayısı: {len(images)}")
-    print(f"📐 Görüntü boyutları: {images.shape}")
-    print(f"📝 Metin boyutları: {processed_texts.shape}")
+    print(f" İşlenen veri sayısı: {len(images)}")
+    print(f" Görüntü boyutları: {images.shape}")
+    print(f" Metin boyutları: {processed_texts.shape}")
     
     return analyzer, images, processed_texts, labels, le
 
 def train_and_evaluate_models(analyzer, images, texts, labels):
     """Tüm modelleri eğit ve değerlendir"""
-    print(f"\n🚀 MODEL EĞİTİMİ VE DEĞERLENDİRME")
+    print(f"\n MODEL EĞİTİMİ VE DEĞERLENDİRME")
     print("=" * 50)
     
     # Train-test split için verileri ayrı ayrı bölelim
@@ -128,7 +128,7 @@ def train_and_evaluate_models(analyzer, images, texts, labels):
     results = {}
     
     # 1. CNN Modeli (Sadece görüntü)
-    print("\n🖼️ CNN MODELİ (Görüntü)")
+    print("\n CNN MODELİ (Görüntü)")
     print("-" * 25)
     
     cnn_model = analyzer.build_cnn_model(images.shape[1:])
@@ -146,7 +146,7 @@ def train_and_evaluate_models(analyzer, images, texts, labels):
     analyzer.plot_roc_curve(y_test, cnn_results['y_pred_proba'], "CNN")
     
     # 2. LSTM Modeli (Sadece metin)
-    print("\n📝 LSTM MODELİ (Metin)")
+    print("\n LSTM MODELİ (Metin)")
     print("-" * 25)
     
     vocab_size = len(analyzer.tokenizer.word_index) + 1
@@ -165,7 +165,7 @@ def train_and_evaluate_models(analyzer, images, texts, labels):
     analyzer.plot_roc_curve(y_test, lstm_results['y_pred_proba'], "LSTM")
     
     # 3. Multimodal Model (Görüntü + Metin)
-    print("\n🎭 MULTIMODAL MODEL (Görüntü + Metin)")
+    print("\n MULTIMODAL MODEL (Görüntü + Metin)")
     print("-" * 35)
     
     multimodal_model = analyzer.build_multimodal_model(images.shape[1:], vocab_size)
@@ -188,7 +188,7 @@ def train_and_evaluate_models(analyzer, images, texts, labels):
 
 def generate_comparison_report(results):
     """Model karşılaştırma raporu oluştur"""
-    print(f"\n📊 MODEL KARŞILAŞTIRMA RAPORU")
+    print(f"\n MODEL KARŞILAŞTIRMA RAPORU")
     print("=" * 50)
     
     # Karşılaştırma tablosu
@@ -209,7 +209,7 @@ def generate_comparison_report(results):
     
     # En iyi model
     best_model = comparison_df.loc[comparison_df['Accuracy'].idxmax()]
-    print(f"\n🏆 EN İYİ MODEL: {best_model['Model']}")
+    print(f"\n EN İYİ MODEL: {best_model['Model']}")
     print(f"   Accuracy: {best_model['Accuracy']:.4f}")
     print(f"   AUC Score: {best_model['AUC Score']:.4f}")
     
@@ -235,35 +235,35 @@ def generate_project_summary():
     print("=" * 50)
     
     requirements_check = {
-        "✅ Kaggle veri seti": "Çok modaliteli duygu analizi veri seti",
-        "✅ Veri örneği (≥1,000)": "71,702+ örnek kullanıldı",
-        "✅ Görüntü boyutu (≥128x128)": "128x128 piksel standardına uygun",
-        "✅ NLP verisi (≥1,000 kelime)": "1,000+ kelime içeren temizlenmiş metinler",
-        "✅ Sınıflandırma (≥2 sınıf)": "POSITIVE/NEGATIVE (2 sınıf)",
-        "✅ ANN tabanlı modeller": "CNN, LSTM, Multimodal",
-        "✅ Değerlendirme metrikleri": "Accuracy, Precision, Recall, F1, AUC",
-        "✅ Görsel çıktılar": "Training curves, Confusion matrix, ROC curves"
+        "Kaggle veri seti": "Çok modaliteli duygu analizi veri seti",
+        "Veri örneği (≥1,000)": "71,702+ örnek kullanıldı",
+        "Görüntü boyutu (≥128x128)": "128x128 piksel standardına uygun",
+        "NLP verisi (≥1,000 kelime)": "1,000+ kelime içeren temizlenmiş metinler",
+        "Sınıflandırma (≥2 sınıf)": "POSITIVE/NEGATIVE (2 sınıf)",
+        "ANN tabanlı modeller": "CNN, LSTM, Multimodal",
+        "Değerlendirme metrikleri": "Accuracy, Precision, Recall, F1, AUC",
+        "Görsel çıktılar": "Training curves, Confusion matrix, ROC curves"
     }
     
     for requirement, status in requirements_check.items():
         print(f"{requirement}: {status}")
     
-    print(f"\n🎯 KULLANILAN MODEL TİPLERİ:")
+    print(f"\n KULLANILAN MODEL TİPLERİ:")
     model_types = [
-        "🔸 CNN - Convolutional Neural Network (Görüntü)",
-        "🔸 LSTM - Long Short-Term Memory (Metin)",
-        "🔸 Multimodal - CNN + LSTM birleşimi"
+        "CNN - Convolutional Neural Network (Görüntü)",
+        "LSTM - Long Short-Term Memory (Metin)",
+        "Multimodal - CNN + LSTM birleşimi"
     ]
     
     for model_type in model_types:
         print(f"  {model_type}")
     
-    print(f"\n📈 OLUŞTURULAN GÖRSEL ÇIKTILAR:")
+    print(f"\n OLUŞTURULAN GÖRSEL ÇIKTILAR:")
     visual_outputs = [
-        "📊 Training/Validation Curves (Loss, Accuracy, Precision, Recall)",
-        "📊 Confusion Matrix (Her model için)",
-        "📊 ROC Curves (AUC skorları ile)",
-        "📊 Model Karşılaştırma Grafikleri"
+        "Training/Validation Curves (Loss, Accuracy, Precision, Recall)",
+        "Confusion Matrix (Her model için)",
+        "ROC Curves (AUC skorları ile)",
+        "Model Karşılaştırma Grafikleri"
     ]
     
     for output in visual_outputs:
@@ -271,13 +271,13 @@ def generate_project_summary():
 
 def main():
     """Ana fonksiyon"""
-    print("🎭 ÇOK MODALİTELİ DUYGU ANALİZİ - DERİN ÖĞRENME VERSİYONU")
+    print("ÇOK MODALİTELİ DUYGU ANALİZİ - DERİN ÖĞRENME VERSİYONU")
     print("=" * 70)
-    print("📚 PROJE ŞARTLARINA TAM UYUMLU VERSİYON")
-    print("🔸 ANN/CNN/LSTM kullanımı")
-    print("🔸 Kaggle standartlarında veri seti")
-    print("🔸 Tam değerlendirme metrikleri")
-    print("🔸 Profesyonel görsel çıktılar")
+    print("PROJE ŞARTLARINA TAM UYUMLU VERSİYON")
+    print("ANN/CNN/LSTM kullanımı")
+    print("Kaggle standartlarında veri seti")
+    print("Tam değerlendirme metrikleri")
+    print("Profesyonel görsel çıktılar")
     print("=" * 70)
     
     # Veri seti yolunu belirtin
@@ -299,8 +299,8 @@ def main():
         # 5. Proje özeti
         generate_project_summary()
         
-        print(f"\n✅ PROJE BAŞARIYLA TAMAMLANDI!")
-        print(f"📁 Oluşturulan dosyalar:")
+        print(f"\n PROJE BAŞARIYLA TAMAMLANDI!")
+        print(f" Oluşturulan dosyalar:")
         print(f"   - CNN_training_curves.png")
         print(f"   - CNN_confusion_matrix.png") 
         print(f"   - CNN_roc_curve.png")
@@ -315,8 +315,8 @@ def main():
         return analyzer, results, comparison_df
         
     except Exception as e:
-        print(f"❌ Hata oluştu: {e}")
-        print("💡 Çözüm önerileri:")
+        print(f"Hata oluştu: {e}")
+        print("Çözüm önerileri:")
         print("   1. Dataset yolunu kontrol edin")
         print("   2. Gerekli kütüphaneleri kurun: pip install -r requirements.txt")
         print("   3. GPU/CPU uyumluluğunu kontrol edin")

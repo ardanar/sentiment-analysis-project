@@ -12,20 +12,19 @@ warnings.filterwarnings('ignore')
 
 # Sayfa konfigürasyonu
 st.set_page_config(
-    page_title="🎭 Duygu Analizi Uygulaması",
-    page_icon="🎭",
+    page_title="Duygu Analizi Uygulaması",
     layout="wide"
 )
 
 # Ana başlık
-st.title("🎭 Çok Modaliteli Duygu Analizi")
+st.title("Çok Modaliteli Duygu Analizi")
 st.markdown("---")
 
 # Sidebar - Navigasyon
-st.sidebar.title("📋 Menü")
+st.sidebar.title("Menü")
 page = st.sidebar.selectbox(
     "Sayfa Seçin",
-    ["🏠 Ana Sayfa", "📊 Veri Analizi", "🤖 Model Testi", "📈 Görselleştirmeler"]
+    ["Ana Sayfa", "Veri Analizi", "Model Testi", "Görselleştirmeler"]
 )
 
 @st.cache_data
@@ -75,13 +74,13 @@ def predict_sentiment(text, model, vectorizer, label_encoder):
         return "HATA", 0.0
 
 # Ana sayfa
-if page == "🏠 Ana Sayfa":
-    st.header("🎯 Proje Hakkında")
+if page == "Ana Sayfa":
+    st.header("Proje Hakkında")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("📊 Veri Seti Özellikleri")
+        st.subheader("Veri Seti Özellikleri")
         st.write("""
         - **71,702 satır** veri
         - **3 sütun**: Image, Text, Sentiment
@@ -89,7 +88,7 @@ if page == "🏠 Ana Sayfa":
         - **Duygu etiketleri**: POSITIVE, NEGATIVE
         """)
         
-        st.subheader("🤖 Kullanılan Teknolojiler")
+        st.subheader("Kullanılan Teknolojiler")
         st.write("""
         - **Python**: Ana programlama dili
         - **Scikit-learn**: Machine Learning
@@ -99,7 +98,7 @@ if page == "🏠 Ana Sayfa":
         """)
     
     with col2:
-        st.subheader("🎯 Proje Hedefleri")
+        st.subheader("Proje Hedefleri")
         st.write("""
         1. **Veri Keşfi**: Dataset'i anlama
         2. **Model Geliştirme**: ML algoritmaları
@@ -107,7 +106,7 @@ if page == "🏠 Ana Sayfa":
         4. **Web Uygulaması**: Kullanıcı arayüzü
         """)
         
-        st.subheader("📈 Model Performansı")
+        st.subheader("Model Performansı")
         st.write("""
         - **Logistic Regression**: %85.7 doğruluk
         - **Random Forest**: %86.7 doğruluk
@@ -115,8 +114,8 @@ if page == "🏠 Ana Sayfa":
         """)
 
 # Veri analizi sayfası
-elif page == "📊 Veri Analizi":
-    st.header("📊 Veri Seti Analizi")
+elif page == "Veri Analizi":
+    st.header("Veri Seti Analizi")
     
     df = load_data()
     if df is not None:
@@ -124,41 +123,41 @@ elif page == "📊 Veri Analizi":
         col1, col2, col3, col4 = st.columns(4)
         
         with col1:
-            st.metric("📝 Toplam Kayıt", len(df))
+            st.metric("Toplam Kayıt", len(df))
         with col2:
-            st.metric("😊 Pozitif", len(df[df['Sentiment'] == 'POSITIVE']))
+            st.metric("Pozitif", len(df[df['Sentiment'] == 'POSITIVE']))
         with col3:
-            st.metric("😞 Negatif", len(df[df['Sentiment'] == 'NEGATIVE']))
+            st.metric("Negatif", len(df[df['Sentiment'] == 'NEGATIVE']))
         with col4:
-            st.metric("📏 Ort. Kelime", f"{df['word_count'].mean():.1f}")
+            st.metric("Ort. Kelime", f"{df['word_count'].mean():.1f}")
         
         # Veri önizleme
-        st.subheader("🔍 Veri Önizleme")
+        st.subheader("Veri Önizleme")
         st.dataframe(df[['Text', 'Sentiment', 'text_length', 'word_count']].head(10))
         
         # İstatistiksel özet
-        st.subheader("📈 İstatistiksel Özet")
+        st.subheader("İstatistiksel Özet")
         st.write(df[['text_length', 'word_count']].describe())
 
 # Model test sayfası
-elif page == "🤖 Model Testi":
-    st.header("🤖 Canlı Duygu Analizi Testi")
+elif page == "Model Testi":
+    st.header("Canlı Duygu Analizi Testi")
     
     df = load_data()
     if df is not None:
         model, vectorizer, le = train_model(df)
         
         if model is not None:
-            st.success("✅ Model başarıyla yüklendi!")
+            st.success("Model başarıyla yüklendi!")
             
             # Metin girişi
             user_text = st.text_area(
-                "📝 Analiz etmek istediğiniz metni girin:",
+                "Analiz etmek istediğiniz metni girin:",
                 height=100,
                 placeholder="Örnek: I love this movie! It's amazing!"
             )
             
-            if st.button("🎯 Duygu Analizi Yap"):
+            if st.button("Duygu Analizi Yap"):
                 if user_text.strip():
                     sentiment, confidence = predict_sentiment(user_text, model, vectorizer, le)
                     
@@ -167,21 +166,21 @@ elif page == "🤖 Model Testi":
                     
                     with col1:
                         if sentiment == "POSITIVE":
-                            st.success(f"😊 **{sentiment}**")
+                            st.success(f"**{sentiment}**")
                         else:
-                            st.error(f"😞 **{sentiment}**")
+                            st.error(f"**{sentiment}**")
                     
                     with col2:
-                        st.info(f"🎯 Güven: **{confidence:.2%}**")
+                        st.info(f"Güven: **{confidence:.2%}**")
                     
                     # Güven seviyesi göstergesi
                     st.progress(confidence)
                     
                 else:
-                    st.warning("⚠️ Lütfen bir metin girin!")
+                    st.warning("Lütfen bir metin girin!")
             
             # Örnek metinler
-            st.subheader("💡 Örnek Metinler")
+            st.subheader("Örnek Metinler")
             examples = [
                 "I absolutely love this product! It's fantastic!",
                 "This is the worst experience I've ever had.",
@@ -197,13 +196,13 @@ elif page == "🤖 Model Testi":
                     st.write(f"**Tahmin:** {sentiment} (Güven: {confidence:.2%})")
 
 # Görselleştirmeler sayfası
-elif page == "📈 Görselleştirmeler":
-    st.header("📈 Veri Görselleştirmeleri")
+elif page == "Görselleştirmeler":
+    st.header("Veri Görselleştirmeleri")
     
     df = load_data()
     if df is not None:
         # Duygu dağılımı
-        st.subheader("🎭 Duygu Dağılımı")
+        st.subheader("Duygu Dağılımı")
         
         col1, col2 = st.columns(2)
         
@@ -224,7 +223,7 @@ elif page == "📈 Görselleştirmeler":
             st.pyplot(fig)
         
         # Metin uzunluğu analizi
-        st.subheader("📏 Metin Uzunluğu Analizi")
+        st.subheader("Metin Uzunluğu Analizi")
         
         col1, col2 = st.columns(2)
         
@@ -241,7 +240,7 @@ elif page == "📈 Görselleştirmeler":
             st.pyplot(fig)
         
         # Kelime sayısı analizi
-        st.subheader("🔤 Kelime Sayısı Analizi")
+        st.subheader("Kelime Sayısı Analizi")
         
         fig, ax = plt.subplots()
         sns.boxplot(data=df, x='Sentiment', y='word_count', ax=ax)
@@ -253,7 +252,7 @@ st.markdown("---")
 st.markdown(
     """
     <div style='text-align: center'>
-        <p>🎭 Çok Modaliteli Duygu Analizi Projesi | Made with ❤️ and Streamlit</p>
+        <p>Çok Modaliteli Duygu Analizi Projesi</p>
     </div>
     """, 
     unsafe_allow_html=True

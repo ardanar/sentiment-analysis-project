@@ -33,7 +33,7 @@ class MultimodalSentimentAnalyzer:
         
     def preprocess_images(self, image_strings, sample_size=1000):
         """Görüntü verilerini CNN için hazırla"""
-        print(f"🖼️ {sample_size} görüntü işleniyor...")
+        print(f" {sample_size} görüntü işleniyor...")
         
         processed_images = []
         valid_indices = []
@@ -65,7 +65,7 @@ class MultimodalSentimentAnalyzer:
         
         # Eğer hiç görüntü işlenemediyse sentetik veri oluştur
         if success_count == 0:
-            print("⚠️ Orijinal görüntüler işlenemedi, sentetik veri oluşturuluyor...")
+            print(" Orijinal görüntüler işlenemedi, sentetik veri oluşturuluyor...")
             
             # Sentetik görüntüler oluştur (128x128x3)
             n_samples = min(sample_size, len(image_strings))
@@ -82,18 +82,18 @@ class MultimodalSentimentAnalyzer:
             processed_images = synthetic_images
             valid_indices = list(range(n_samples))
             
-            print(f"✅ {n_samples} sentetik görüntü oluşturuldu")
+            print(f" {n_samples} sentetik görüntü oluşturuldu")
         else:
             processed_images = np.array(processed_images)
-            print(f"✅ {len(processed_images)} orijinal görüntü işlendi")
+            print(f" {len(processed_images)} orijinal görüntü işlendi")
             
-        print(f"📐 Görüntü boyutları: {processed_images.shape}")
+        print(f" Görüntü boyutları: {processed_images.shape}")
         
         return processed_images, valid_indices
     
     def preprocess_texts(self, texts):
         """Metin verilerini LSTM için hazırla"""
-        print("📝 Metinler tokenize ediliyor...")
+        print(" Metinler tokenize ediliyor...")
         
         # Tokenizer oluştur
         self.tokenizer = tf.keras.preprocessing.text.Tokenizer(
@@ -111,14 +111,14 @@ class MultimodalSentimentAnalyzer:
             sequences, maxlen=self.max_len, padding='post'
         )
         
-        print(f"✅ {len(padded_sequences)} metin işlendi")
-        print(f"📏 Sequence uzunluğu: {padded_sequences.shape}")
+        print(f" {len(padded_sequences)} metin işlendi")
+        print(f" Sequence uzunluğu: {padded_sequences.shape}")
         
         return padded_sequences
     
     def build_cnn_model(self, input_shape):
         """Görüntü analizi için CNN modeli"""
-        print("🏗️ CNN modeli oluşturuluyor...")
+        print(" CNN modeli oluşturuluyor...")
         
         model = Sequential([
             # İlk Konvolüsyon Bloğu
@@ -154,12 +154,12 @@ class MultimodalSentimentAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ CNN modeli hazır!")
+        print(" CNN modeli hazır!")
         return model
     
     def build_lstm_model(self, vocab_size):
         """Metin analizi için LSTM modeli"""
-        print("🏗️ LSTM modeli oluşturuluyor...")
+        print("LSTM modeli oluşturuluyor...")
         
         model = Sequential([
             # Embedding katmanı
@@ -184,12 +184,12 @@ class MultimodalSentimentAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ LSTM modeli hazır!")
+        print(" LSTM modeli hazır!")
         return model
     
     def build_multimodal_model(self, img_shape, vocab_size):
         """Çok modaliteli model (CNN + LSTM)"""
-        print("🏗️ Multimodal model oluşturuluyor...")
+        print(" Multimodal model oluşturuluyor...")
         
         # Görüntü dalı (CNN)
         img_input = Input(shape=img_shape, name='image_input')
@@ -226,12 +226,12 @@ class MultimodalSentimentAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ Multimodal model hazır!")
+        print(" Multimodal model hazır!")
         return model
     
     def train_model(self, model, X, y, model_name, validation_split=0.2, epochs=50, batch_size=32):
         """Model eğitimi"""
-        print(f"🚀 {model_name} modeli eğitiliyor...")
+        print(f" {model_name} modeli eğitiliyor...")
         
         # Callbacks
         early_stopping = EarlyStopping(
@@ -268,13 +268,13 @@ class MultimodalSentimentAnalyzer:
             )
         
         self.history[model_name] = history
-        print(f"✅ {model_name} eğitimi tamamlandı!")
+        print(f" {model_name} eğitimi tamamlandı!")
         
         return history
     
     def evaluate_model(self, model, X_test, y_test, model_name):
         """Model değerlendirmesi ve metrikler"""
-        print(f"📊 {model_name} değerlendiriliyor...")
+        print(f" {model_name} değerlendiriliyor...")
         
         # Tahminler
         if isinstance(X_test, list):
@@ -288,7 +288,7 @@ class MultimodalSentimentAnalyzer:
         accuracy = np.mean(y_test == y_pred.flatten())
         auc_score = roc_auc_score(y_test, y_pred_proba)
         
-        print(f"📈 {model_name} Sonuçları:")
+        print(f" {model_name} Sonuçları:")
         print(f"Accuracy: {accuracy:.4f}")
         print(f"AUC Score: {auc_score:.4f}")
         

@@ -28,7 +28,7 @@ class AdvancedFeatureExtractor:
         
     def extract_text_features(self, texts):
         """Metinlerden sayısal özellikler çıkar"""
-        print("📝 Metin özellikler çıkarılıyor...")
+        print("Metin özellikler çıkarılıyor...")
         
         features = []
         for text in texts:
@@ -91,7 +91,7 @@ class AdvancedFeatureExtractor:
             'positive_count', 'negative_count'
         ])
         
-        print(f"✅ {len(feature_df)} metnin 13 özelliği çıkarıldı")
+        print(f" {len(feature_df)} metnin 13 özelliği çıkarıldı")
         return feature_df
     
     def extract_image_features(self, image_arrays):
@@ -151,12 +151,12 @@ class AdvancedFeatureExtractor:
             'color_variance', 'hist_mean', 'hist_std', 'edge_density', 'texture_complexity'
         ])
         
-        print(f"✅ {len(feature_df)} görüntünün 10 özelliği çıkarıldı")
+        print(f"{len(feature_df)} görüntünün 10 özelliği çıkarıldı")
         return feature_df
     
     def create_three_class_labels(self, sentiment_labels, method='balanced'):
         """2 sınıfı 3 sınıfa dönüştür"""
-        print("🎯 3 sınıflı etiketler oluşturuluyor...")
+        print("3 sınıflı etiketler oluşturuluyor...")
         
         three_class_labels = []
         
@@ -194,7 +194,7 @@ class AdvancedFeatureExtractor:
                     three_class_labels.append('NEUTRAL')
         
         label_counts = pd.Series(three_class_labels).value_counts()
-        print(f"✅ 3 sınıflı dağılım:")
+        print(f" 3 sınıflı dağılım:")
         for label, count in label_counts.items():
             percentage = (count / len(three_class_labels)) * 100
             print(f"   {label}: {count} (%{percentage:.1f})")
@@ -203,7 +203,7 @@ class AdvancedFeatureExtractor:
     
     def create_combined_features(self, text_features, image_features):
         """Metin ve görüntü özelliklerini birleştir"""
-        print("🔗 Özellikler birleştiriliyor...")
+        print(" Özellikler birleştiriliyor...")
         
         # Özellikleri birleştir
         combined_features = pd.concat([text_features, image_features], axis=1)
@@ -213,14 +213,14 @@ class AdvancedFeatureExtractor:
         combined_features_scaled = self.scaler.fit_transform(combined_features)
         combined_features_scaled = pd.DataFrame(combined_features_scaled, columns=feature_names)
         
-        print(f"✅ Toplam {len(feature_names)} özellik birleştirildi ve standardize edildi")
-        print(f"📊 Özellik listesi: {feature_names}")
+        print(f" Toplam {len(feature_names)} özellik birleştirildi ve standardize edildi")
+        print(f" Özellik listesi: {feature_names}")
         
         return combined_features_scaled, feature_names
 
 def prepare_enhanced_dataset(df, sample_size=1000):
     """Gelişmiş veri seti hazırlama"""
-    print("\n🔧 GELİŞMİŞ VERİ SETİ HAZIRLANIYOR")
+    print("\n GELİŞMİŞ VERİ SETİ HAZIRLANIYOR")
     print("=" * 50)
     
     # Feature extractor oluştur
@@ -230,7 +230,7 @@ def prepare_enhanced_dataset(df, sample_size=1000):
     df_sample = df.sample(n=min(sample_size, len(df)), random_state=42).reset_index(drop=True)
     
     # Sentetik görüntüler oluştur (orijinal veriler bozuk olduğu için)
-    print("🖼️ Sentetik görüntüler oluşturuluyor...")
+    print(" Sentetik görüntüler oluşturuluyor...")
     synthetic_images = []
     for i in range(len(df_sample)):
         # 128x128x3 rastgele görüntü
@@ -245,7 +245,7 @@ def prepare_enhanced_dataset(df, sample_size=1000):
         synthetic_images.append(img)
     
     synthetic_images = np.array(synthetic_images)
-    print(f"✅ {len(synthetic_images)} sentetik görüntü oluşturuldu")
+    print(f" {len(synthetic_images)} sentetik görüntü oluşturuldu")
     
     # Metin özelliklerini çıkar
     text_features = extractor.extract_text_features(df_sample['Text'].values)
@@ -263,11 +263,11 @@ def prepare_enhanced_dataset(df, sample_size=1000):
     label_encoder = LabelEncoder()
     encoded_labels = label_encoder.fit_transform(three_class_labels)
     
-    print(f"\n✅ HAZIRLIK TAMAMLANDI!")
-    print(f"📊 Toplam örnek: {len(combined_features)}")
-    print(f"🔢 Toplam özellik: {len(feature_names)}")
-    print(f"🎯 Sınıf sayısı: {len(label_encoder.classes_)}")
-    print(f"📝 Sınıflar: {label_encoder.classes_}")
+    print(f"\n HAZIRLIK TAMAMLANDI!")
+    print(f" Toplam örnek: {len(combined_features)}")
+    print(f" Toplam özellik: {len(feature_names)}")
+    print(f" Sınıf sayısı: {len(label_encoder.classes_)}")
+    print(f" Sınıflar: {label_encoder.classes_}")
     
     return {
         'features': combined_features,
@@ -282,7 +282,7 @@ def prepare_enhanced_dataset(df, sample_size=1000):
 
 if __name__ == "__main__":
     # Test
-    print("🧪 Feature Engineering Test")
+    print(" Feature Engineering Test")
     df = pd.read_csv('/Users/ardanar/Downloads/dataset.csv', nrows=100)
     result = prepare_enhanced_dataset(df, sample_size=50)
     print(f"Test başarılı! {len(result['features'])} örnek, {len(result['feature_names'])} özellik") 

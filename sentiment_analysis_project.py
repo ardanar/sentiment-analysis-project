@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 
 def load_and_explore_data(file_path):
     """Veri setini yükle ve keşfet"""
-    print("📊 Veri seti yükleniyor...")
+    print("Veri seti yükleniyor...")
     
     # Büyük dosya için chunk'lar halinde okuma
     chunk_size = 10000
@@ -27,14 +27,14 @@ def load_and_explore_data(file_path):
     
     df = pd.concat(chunks, ignore_index=True)
     
-    print(f"✅ Veri seti yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun")
+    print(f"Veri seti yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun")
     
     # Temel bilgiler
-    print("\n📈 Veri Seti Özeti:")
+    print("\nVeri Seti Özeti:")
     print(df.info())
     
     # Duygu dağılımı
-    print("\n🎭 Duygu Dağılımı:")
+    print("\nDuygu Dağılımı:")
     sentiment_counts = df['Sentiment'].value_counts()
     print(sentiment_counts)
     
@@ -53,7 +53,7 @@ def load_and_explore_data(file_path):
 
 def preprocess_text_data(df):
     """Metin verilerini temizle ve hazırla"""
-    print("\n🧹 Metin verileri temizleniyor...")
+    print("\nMetin verileri temizleniyor...")
     
     # Null değerleri kontrol et
     print(f"Null metin sayısı: {df['Text'].isnull().sum()}")
@@ -72,7 +72,7 @@ def preprocess_text_data(df):
 
 def extract_image_features(df, sample_size=1000):
     """Görüntü verilerinden basit özellikler çıkar"""
-    print(f"\n🖼️ Görüntü özellikler çıkarılıyor (örnek: {sample_size})...")
+    print(f"\nGörüntü özellikler çıkarılıyor (örnek: {sample_size})...")
     
     # Örnek almak için (büyük veri seti olduğu için)
     df_sample = df.sample(n=min(sample_size, len(df)), random_state=42)
@@ -101,13 +101,13 @@ def extract_image_features(df, sample_size=1000):
             continue
     
     image_df = pd.DataFrame(image_features, index=valid_indices)
-    print(f"✅ {len(image_features)} görüntüden özellik çıkarıldı")
+    print(f"{len(image_features)} görüntüden özellik çıkarıldı")
     
     return image_df
 
 def train_text_sentiment_model(df):
     """Sadece metin kullanarak duygu analizi modeli eğit"""
-    print("\n🤖 Metin tabanlı duygu analizi modeli eğitiliyor...")
+    print("\nMetin tabanlı duygu analizi modeli eğitiliyor...")
     
     # Veriyi hazırla
     X_text = df['Text']
@@ -127,11 +127,11 @@ def train_text_sentiment_model(df):
     )
     
     # Model eğitimi
-    print("🔄 Logistic Regression modeli eğitiliyor...")
+    print("Logistic Regression modeli eğitiliyor...")
     lr_model = LogisticRegression(random_state=42, max_iter=1000)
     lr_model.fit(X_train, y_train)
     
-    print("🔄 Random Forest modeli eğitiliyor...")
+    print("Random Forest modeli eğitiliyor...")
     rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
     rf_model.fit(X_train, y_train)
     
@@ -141,7 +141,7 @@ def train_text_sentiment_model(df):
     for name, model in models.items():
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
-        print(f"\n📊 {name} Sonuçları:")
+        print(f"\n{name} Sonuçları:")
         print(f"Doğruluk: {accuracy:.4f}")
         print("\nSınıflandırma Raporu:")
         print(classification_report(y_test, y_pred, target_names=le.classes_))
@@ -150,7 +150,7 @@ def train_text_sentiment_model(df):
 
 def analyze_sentiment_patterns(df):
     """Duygu desenlerini analiz et"""
-    print("\n🔍 Duygu desenleri analiz ediliyor...")
+    print("\nDuygu desenleri analiz ediliyor...")
     
     # Metin uzunluğu vs duygu
     plt.figure(figsize=(12, 8))
@@ -188,7 +188,7 @@ def analyze_sentiment_patterns(df):
 
 def main():
     """Ana fonksiyon"""
-    print("🚀 Çok Modaliteli Duygu Analizi Projesi Başlıyor!")
+    print("Çok Modaliteli Duygu Analizi Projesi Başlıyor!")
     print("=" * 50)
     
     # Veri setini yükle
@@ -205,11 +205,11 @@ def main():
     models, vectorizer, label_encoder = train_text_sentiment_model(df)
     
     # Görüntü özelliklerini çıkar (opsiyonel)
-    print("\n❓ Görüntü özelliklerini de çıkarmak ister misiniz? (Bu uzun sürebilir)")
+    print("\nGörüntü özelliklerini de çıkarmak ister misiniz? (Bu uzun sürebilir)")
     print("Image features extraction can be added if needed")
     
-    print("\n✅ Proje tamamlandı!")
-    print("📁 Oluşturulan dosyalar:")
+    print("\nProje tamamlandı!")
+    print("Oluşturulan dosyalar:")
     print("- sentiment_distribution.png")
     print("- sentiment_analysis.png")
     

@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-"""
-🚀 Gelişmiş Çok Modaliteli Duygu Analizi - Tam Şartlara Uyumlu Versiyon
-
-ŞARTLAR:
-✅ Özellik sayısı: 23 sayısal özellik (≥5)
-✅ Sınıf sayısı: 3 sınıf (POSITIVE, NEGATIVE, NEUTRAL)
-✅ ANN modelleri: CNN, LSTM, Multimodal + Traditional ML
-✅ Tam değerlendirme metrikleri
-✅ Profesyonel görselleştirmeler
-"""
 
 import pandas as pd
 import numpy as np
@@ -81,7 +71,7 @@ class EnhancedMultimodalAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ Gelişmiş CNN modeli hazır!")
+        print(" Gelişmiş CNN modeli hazır!")
         return model
     
     def build_enhanced_ann(self, input_dim):
@@ -113,12 +103,12 @@ class EnhancedMultimodalAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ ANN modeli hazır!")
+        print("ANN modeli hazır!")
         return model
     
     def build_combined_model(self, img_shape, feature_dim):
         """Görüntü + özellik birleşik modeli"""
-        print("🏗️ Birleşik multimodal model oluşturuluyor...")
+        print(" Birleşik multimodal model oluşturuluyor...")
         
         # Görüntü dalı
         img_input = Input(shape=img_shape, name='image_input')
@@ -154,12 +144,12 @@ class EnhancedMultimodalAnalyzer:
             metrics=['accuracy', 'precision', 'recall']
         )
         
-        print("✅ Birleşik model hazır!")
+        print("Birleşik model hazır!")
         return model
     
     def train_traditional_models(self, X_train, X_test, y_train, y_test):
         """Geleneksel ML modelleri"""
-        print("\n🤖 GELENEKSEL ML MODELLERİ")
+        print("\n GELENEKSEL ML MODELLERİ")
         print("=" * 40)
         
         traditional_models = {
@@ -173,7 +163,7 @@ class EnhancedMultimodalAnalyzer:
         traditional_results = {}
         
         for name, model in traditional_models.items():
-            print(f"\n🔹 {name} eğitiliyor...")
+            print(f"\n {name} eğitiliyor...")
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
             
@@ -194,7 +184,7 @@ class EnhancedMultimodalAnalyzer:
     
     def train_deep_models(self, data_dict):
         """Derin öğrenme modellerini eğit"""
-        print("\n🧠 DERİN ÖĞRENME MODELLERİ")
+        print("\n DERİN ÖĞRENME MODELLERİ")
         print("=" * 40)
         
         # Veriyi hazırla
@@ -217,7 +207,7 @@ class EnhancedMultimodalAnalyzer:
         deep_results = {}
         
         # 1. Özellik tabanlı ANN
-        print("\n🔹 Özellik tabanlı ANN...")
+        print("\n Özellik tabanlı ANN...")
         ann_model = self.build_enhanced_ann(features.shape[1])
         
         early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
@@ -248,7 +238,7 @@ class EnhancedMultimodalAnalyzer:
         print(f"   F1-Score: {ann_f1:.4f}")
         
         # 2. CNN (Görüntü)
-        print("\n🔹 CNN (Görüntü)...")
+        print("\n CNN (Görüntü)...")
         cnn_model = self.build_enhanced_cnn(images.shape[1:])
         
         cnn_history = cnn_model.fit(
@@ -277,7 +267,7 @@ class EnhancedMultimodalAnalyzer:
         print(f"   F1-Score: {cnn_f1:.4f}")
         
         # 3. Birleşik model
-        print("\n🔹 Birleşik Multimodal Model...")
+        print("\n Birleşik Multimodal Model...")
         combined_model = self.build_combined_model(images.shape[1:], features.shape[1])
         
         combined_history = combined_model.fit(
@@ -317,7 +307,7 @@ class EnhancedMultimodalAnalyzer:
     
     def create_comprehensive_visualizations(self, results, y_true, label_encoder):
         """Kapsamlı görselleştirmeler"""
-        print("\n📊 KAPSAMLI GÖRSELLEŞTİRMELER OLUŞTURULUYOR")
+        print("\nKAPSAMLI GÖRSELLEŞTİRMELER OLUŞTURULUYOR")
         print("=" * 50)
         
         # 1. Model karşılaştırma
@@ -418,26 +408,26 @@ class EnhancedMultimodalAnalyzer:
 
 def main():
     """Ana fonksiyon"""
-    print("🚀 GELİŞMİŞ ÇOK MODALİTELİ DUYGU ANALİZİ")
+    print("GELİŞMİŞ ÇOK MODALİTELİ DUYGU ANALİZİ")
     print("=" * 60)
-    print("✅ ŞART KONTROLÜ:")
-    print("   🔸 Özellik sayısı: 23 sayısal özellik (≥5)")
-    print("   🔸 Sınıf sayısı: 3 sınıf (≥3)")
-    print("   🔸 ANN modelleri: ✓")
-    print("   🔸 Tam değerlendirme: ✓")
+    print("ŞART KONTROLÜ:")
+    print("    Özellik sayısı: 23 sayısal özellik (≥5)")
+    print("    Sınıf sayısı: 3 sınıf (≥3)")
+    print("    ANN modelleri: ✓")
+    print("    Tam değerlendirme: ✓")
     print("=" * 60)
     
     # Veri setini hazırla
-    print("\n📚 VERİ SETİ HAZIRLANIYOR...")
+    print("\nVERİ SETİ HAZIRLANIYOR...")
     df = pd.read_csv('/Users/ardanar/Downloads/dataset.csv')
     
     global data_dict
     data_dict = prepare_enhanced_dataset(df, sample_size=1000)
     
-    print(f"\n✅ ŞARTLARA UYGUNLUK KONTROLÜ:")
-    print(f"   📊 Özellik sayısı: {len(data_dict['feature_names'])} (≥5) ✓")
-    print(f"   🎯 Sınıf sayısı: {len(data_dict['label_encoder'].classes_)} (≥3) ✓")
-    print(f"   📝 Sınıflar: {data_dict['label_encoder'].classes_}")
+    print(f"\nŞARTLARA UYGUNLUK KONTROLÜ:")
+    print(f"   Özellik sayısı: {len(data_dict['feature_names'])} (≥5) ✓")
+    print(f"   Sınıf sayısı: {len(data_dict['label_encoder'].classes_)} (≥3) ✓")
+    print(f"   Sınıflar: {data_dict['label_encoder'].classes_}")
     
     # Analiz sınıfını oluştur
     analyzer = EnhancedMultimodalAnalyzer()
@@ -446,7 +436,7 @@ def main():
     results, y_true = analyzer.train_deep_models(data_dict)
     
     # Sonuçları göster
-    print(f"\n🏆 MODEL PERFORMANS SONUÇLARI")
+    print(f"\nMODEL PERFORMANS SONUÇLARI")
     print("=" * 50)
     
     comparison_data = []
@@ -463,36 +453,36 @@ def main():
     
     # En iyi model
     best_model = comparison_df.iloc[0]
-    print(f"\n🥇 EN İYİ MODEL: {best_model['Model']}")
-    print(f"   📈 Accuracy: {best_model['Accuracy']:.4f}")
-    print(f"   📊 F1-Score: {best_model['F1-Score']:.4f}")
+    print(f"\nEN İYİ MODEL: {best_model['Model']}")
+    print(f"   Accuracy: {best_model['Accuracy']:.4f}")
+    print(f"   F1-Score: {best_model['F1-Score']:.4f}")
     
     # Görselleştirmeler
     analyzer.create_comprehensive_visualizations(results, y_true, data_dict['label_encoder'])
     
     # Detaylı rapor
-    print(f"\n📋 DETAYLI PROJE RAPORU")
+    print(f"\nDETAYLI PROJE RAPORU")
     print("=" * 50)
-    print(f"✅ Akademik Şartlar:")
-    print(f"   🔸 Sayısal özellik sayısı: {len(data_dict['feature_names'])} (≥5)")
-    print(f"   🔸 Sınıf sayısı: {len(data_dict['label_encoder'].classes_)} (≥3)")
-    print(f"   🔸 ANN tabanlı modeller: 6 farklı model")
-    print(f"   🔸 Değerlendirme metrikleri: Accuracy, F1-Score, Confusion Matrix")
-    print(f"   🔸 Görselleştirmeler: Karşılaştırma grafikleri, radar chart")
+    print(f"Akademik Şartlar:")
+    print(f"   Sayısal özellik sayısı: {len(data_dict['feature_names'])} (≥5)")
+    print(f"    Sınıf sayısı: {len(data_dict['label_encoder'].classes_)} (≥3)")
+    print(f"    ANN tabanlı modeller: 6 farklı model")
+    print(f"    Değerlendirme metrikleri: Accuracy, F1-Score, Confusion Matrix")
+    print(f"    Görselleştirmeler: Karşılaştırma grafikleri, radar chart")
     
-    print(f"\n🎯 KULLANILAN MODELlER:")
+    print(f"\n KULLANILAN MODELlER:")
     for i, model_name in enumerate(results.keys(), 1):
         print(f"   {i}. {model_name}")
     
-    print(f"\n📈 OLUŞTURULAN GÖRSEL DOSYALAR:")
-    print(f"   📊 enhanced_model_comparison.png")
-    print(f"   📊 enhanced_analysis_details.png")
+    print(f"\n OLUŞTURULAN GÖRSEL DOSYALAR:")
+    print(f"    enhanced_model_comparison.png")
+    print(f"    enhanced_analysis_details.png")
     
-    print(f"\n🎉 PROJE BAŞARIYLA TAMAMLANDI!")
-    print(f"   ✅ Tüm akademik şartlar karşılandı")
-    print(f"   ✅ 6 farklı model karşılaştırıldı")
-    print(f"   ✅ 23 sayısal özellik kullanıldı")
-    print(f"   ✅ 3 sınıflı problem çözüldü")
+    print(f"\n PROJE BAŞARIYLA TAMAMLANDI!")
+    print(f"    Tüm akademik şartlar karşılandı")
+    print(f"    6 farklı model karşılaştırıldı")
+    print(f"    23 sayısal özellik kullanıldı")
+    print(f"    3 sınıflı problem çözüldü")
     
     return analyzer, results, comparison_df
 
